@@ -106,7 +106,12 @@ io.sockets.on('connection',
       });
 
       socket.on('results', function(data){
-        results = {};
+        let id1 = lobbies[players[socket.id].lobby_id].players[0];
+        let id2 = lobbies[players[socket.id].lobby_id].players[1];
+        let results = {
+          p1: {id: id1, result: lobbies[players[socket.id].lobby_id].scores[id1]},
+          p2: {id: id2, result: lobbies[players[socket.id].lobby_id].scores[id2]}
+        };
         socket.emit('returned_results', results);
       });
 
@@ -144,7 +149,7 @@ function parse(question){
     3:'/',
   };
   let q = question.nums[0] + ' '+ convert[question.ops[0]] +' '+question.nums[1]+' = ?';
-  return `${q} (1 d.p.)`;
+  return `${q} <br>(1 d.p.)`;
 }
 
 

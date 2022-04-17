@@ -61,7 +61,9 @@ function socket_functions(){
     socket.emit("next_question");
   });
   socket.on('disconn', function(data){
-    location.reload();
+    if(state != views[3]){
+      location.reload();
+    }
   });
   socket.on('joined_lobby', function(lobby){
     state = views[1];
@@ -100,8 +102,22 @@ function socket_functions(){
     socket.emit('results');
   });
 
-  socket.on('returned_results', function(results){
-    console.log(results);
+  socket.on('returned_results', function(data){
+
+    let ps = {
+      other: 0,
+      me: 0,
+    };
+    
+    if(data.p1.id == socket.id){ps.me = data.p1.result;}
+    else{ps.other = data.p1.result;}
+    
+    if(data.p2.id == socket.id){ps.me = data.p2.result;}
+    else{ps.other = data.p2.result;}
+
+    document.getElementById('op_results').innerHTML = ps.other+" / 10";
+    document.getElementById('me_results').innerHTML = ps.me+" / 10";
+    
   });
   
 }
