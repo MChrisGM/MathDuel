@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MathDuel</title>
+
+    <meta name="viewport" content="user-scalable = no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+        integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="scripts/script.js"></script>
+
+</head>
+
+<body class='unselectable' oncontextmenu="return false;">
+</body>
+  <div id="application" class="center">
+    <br>
+    <div id="mainmenu" style="display:block;-webkit-appearance:none;" class="flex-container">
+      <h1 class="center" style="font-size: 3.5em; color: #ffffff; text-shadow:4px 4px #000000;">Math Duel</h1><br>
+      <hr>
+      <br>
+      <button id="createlobby_btn" class="center" onclick = createLobby();>Create Lobby</button><br><br>
+      <hr>
+      <br>
+      <form id="lobby_join_form">
+        <input type="text" id="lobby_code" name="lobby_code" maxlength="5" size="5" placeholder="CODE"><br><br>
+        <input type="submit" id="lobby_submit" value="Join">
+      </form>      
+    </div>
+
+    <div id="lobby" style="display:none;">
+      <br><br>
+      <h1 id="lobby_code_label" style="font-size: 2.5em; color: #ffffff; text-shadow:4px 4px #000000;">Lobby Code: </h1>
+      <hr><br><br>
+      <h1 id="other_player_state" style="font-size: 1.5em; color: #ffffff; text-shadow:4px 4px #000000; text-align: left;">Other player: </h1>
+      <h1 id="op_status" class="status">Not Ready</h1>
+      <br><br>
+      <h1 id="self_player_state" style="font-size: 1.5em; color: #ffffff; text-shadow:4px 4px #000000; text-align: left;">Me: </h1>
+      <h1 id="me_status" class="status">Not Ready</h1>
+      <br><br>
+      <button id="setready_btn" class="center" onclick = setReady();>Ready up</button><br><br>
+    </div>
+    
+    <div id="container" style="display:none;">
+      <h1 id="question" class="status">Question</h1>
+      <form id="answer_form">
+        <input type="text" id="answer" name="answer" placeholder="Answer"><br><br>
+        <input type="submit" id="answer_submit" value="Submit">
+      </form>
+    </div>
+
+    <div id="results" style="display:none;">
+      
+    </div>
+
+  </div>
+</html>
